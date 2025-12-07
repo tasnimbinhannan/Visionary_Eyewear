@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Visionary Eyewear</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div id="app-root">
+        <!-- HEADER -->
+        <header class="site-header">
+            <div class="header-inner">
+                <div class="brand">
+                    <div class="brand-mark">V</div>
+                    <span class="brand-name">Visionary</span>
+                </div>
+
+                <nav class="main-nav">
+                    <a href="#" class="nav-link active" data-nav="home">Home</a>
+                    <a href="#" class="nav-link" data-nav="shop">Shop</a>
+                    <a href="#" class="nav-link" data-nav="account">Account</a>
+                    <a href="#" class="nav-link" data-nav="about">About</a>
+                    <a href="#" class="nav-link" data-nav="contact">Contact</a>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="icon-header wishlist-icon-header" type="button" aria-label="Wishlist"
+                        data-nav="wishlist">
+                        <span class="icon-badge" id="wishlist-count">0</span>
+                    </button>
+                    <button class="icon-header cart-icon-header" type="button" aria-label="Cart" data-nav="cart">
+                        <span class="icon-badge" id="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main">
+            <!-- HOME -->
+            <section id="view-home" class="view-section active">
+                <div class="page-width">
+                    <div class="hero">
+                        <div class="hero-copy">
+                            <p class="eyebrow">Minimal eyewear for modern life.</p>
+                            <h1>Premium frames for work, play, and everything between.</h1>
+                            <p class="hero-sub">
+                                Blue-light blockers, prescription classics, and kid-proof frames —
+                                all in a clean, modern storefront experience.
+                            </p>
+                            <div class="hero-actions">
+                                <button class="btn primary" data-nav="shop">Shop collection</button>
+                                <button class="btn ghost hero-learn" data-nav="about">Learn more</button>
+                            </div>
+                        </div>
+                        <div class="hero-feature-card">
+                            <div class="hero-feature-media">
+                                <img src="https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/jade-green-full-rim-square-air-essentials-la-e15417-w-c16-eyeglasses_208952_3_15_02_2025.png"
+                                    alt="Minimal eyewear" />
+                            </div>
+                            <div class="hero-feature-body">
+                                <p class="eyebrow">Highlight</p>
+                                <h3>GreenReaper Pro</h3>
+                                <p>Cut the strain, keep the style. Sleek metal frames with pro-grade
+                                    blue-light filtering.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="home-highlight">
+                        <header class="section-header">
+                            <div>
+                                <h2>Featured collections</h2>
+                                <p class="section-sub">
+                                    Curated picks for Men, Women, and Kids — updated regularly.
+                                </p>
+                            </div>
+                            <div class="featured-pills">
+                                <button class="pill pill--active" data-collection="men">Men</button>
+                                <button class="pill" data-collection="women">Women</button>
+                                <button class="pill" data-collection="kid">Kid</button>
+                                <button class="pill" data-collection="all">View all</button>
+                            </div>
+                        </header>
+
+                        <div id="home-featured-grid" class="product-grid home-grid"></div>
+                    </section>
+                </div>
+            </section>
+
+            <!-- SHOP -->
+            <section id="view-shop" class="view-section">
+                <div class="page-width">
+                    <header class="page-header">
+                        <div>
+                            <h1>Shop eyewear</h1>
+                            <p>Filter, compare, and find your next favorite frame.</p>
+                        </div>
+                    </header>
+
+                    <div class="shop-toolbar">
+                        <div class="search-group">
+                            <span class="search-icon" aria-hidden="true"></span>
+                            <input id="search-input" type="search" placeholder="Search by name or brand" />
+                        </div>
+
+                        <div class="filters-row">
+                            <select id="filter-category" class="filter-select">
+                                <option value="all">All categories</option>
+                                <option value="men">Men</option>
+                                <option value="women">Women</option>
+                                <option value="kid">Kid</option>
+                            </select>
+
+                            <select id="filter-shape" class="filter-select">
+                                <option value="all">All shapes</option>
+                                <option value="round">Round</option>
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                            </select>
+
+                            <select id="sort-select" class="filter-select">
+                                <option value="featured">Featured</option>
+                                <option value="price-asc">Price: low to high</option>
+                                <option value="price-desc">Price: high to low</option>
+                                <option value="newest">Newest</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="product-grid" class="product-grid"></div>
+                </div>
+            </section>
+
+            <!-- PRODUCT DETAIL -->
+            <section id="view-product" class="view-section">
+                <div class="page-width">
+                    <button class="link-back" data-nav="shop">← Back to shop</button>
+                    <div id="product-detail" class="product-detail"></div>
+                </div>
+            </section>
+
+            <!-- WISHLIST -->
+            <section id="view-wishlist" class="view-section">
+                <div class="page-width">
+                    <header class="page-header">
+                        <div>
+                            <h1>Wishlist</h1>
+                            <p>Save frames you love and move them to your cart anytime.</p>
+                        </div>
+                    </header>
+
+                    <p id="wishlist-empty" class="empty-big">
+                        Your wishlist is empty. Start adding your favorite frames.
+                    </p>
+
+                    <div id="wishlist-list" class="product-grid"></div>
+                </div>
+            </section>
+
+            <!-- CART -->
+            <section id="view-cart" class="view-section">
+                <div class="page-width">
+                    <header class="page-header">
+                        <div>
+                            <h1>Cart</h1>
+                            <p>Review your items before checking out.</p>
+                        </div>
+                    </header>
+
+                    <p id="cart-empty" class="empty-big">
+                        Your cart is empty. Browse the shop to add items.
+                    </p>
+
+                    <div class="cart-layout">
+                        <div id="cart-items" class="cart-items"></div>
+
+                        <aside class="cart-summary">
+                            <h3>Order summary</h3>
+                            <dl class="summary-list">
+                                <div class="summary-row">
+                                    <dt>Subtotal</dt>
+                                    <dd id="summary-subtotal">$0.00</dd>
+                                </div>
+                                <div class="summary-row">
+                                    <dt>Estimated tax</dt>
+                                    <dd id="summary-tax">$0.00</dd>
+                                </div>
+                                <div class="summary-row">
+                                    <dt>Shipping</dt>
+                                    <dd id="summary-shipping">Calculated at checkout</dd>
+                                </div>
+                                <div class="summary-row summary-total">
+                                    <dt>Total</dt>
+                                    <dd id="summary-total">$0.00</dd>
+                                </div>
+                            </dl>
+
+                            <div class="summary-actions">
+                                <button id="btn-go-checkout" class="btn primary full-width" type="button">
+                                    Proceed to checkout
+                                </button>
+                                <button class="btn ghost full-width" type="button" data-nav="shop">
+                                    Continue shopping
+                                </button>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHECKOUT -->
+            <section id="view-checkout" class="view-section">
+                <div class="page-width">
+                    <header class="page-header">
+                        <div>
+                            <h1>Checkout</h1>
+                            <p>Securely complete your order (simulation-only).</p>
+                        </div>
+                    </header>
+
+                    <div class="checkout-layout">
+                        <form id="checkout-form" class="checkout-form">
+                            <h3>Shipping details</h3>
+                            <div class="form-grid">
+                                <label>
+                                    Full name
+                                    <input type="text" name="fullName" required />
+                                </label>
+                                <label>
+                                    Email
+                                    <input type="email" name="email" required />
+                                </label>
+                                <label>
+                                    Phone
+                                    <input type="tel" name="phone" required />
+                                </label>
+                                <label>
+                                    Address
+                                    <input type="text" name="address" required />
+                                </label>
+                                <label>
+                                    City
+                                    <input type="text" name="city" required />
+                                </label>
+                                <label>
+                                    Postal code
+                                    <input type="text" name="zip" required />
+                                </label>
+                                <label>
+                                    Country
+                                    <input type="text" name="country" required />
+                                </label>
+                            </div>
+
+                            <h3>Shipping method</h3>
+                            <div class="shipping-options">
+                                <label class="radio-row">
+                                    <input type="radio" name="shipping" value="standard" data-cost="5" checked />
+                                    <span>Standard (3–5 business days) — $5</span>
+                                </label>
+                                <label class="radio-row">
+                                    <input type="radio" name="shipping" value="express" data-cost="15" />
+                                    <span>Express (1–2 business days) — $15</span>
+                                </label>
+                            </div>
+
+                            <h3>Payment (simulation)</h3>
+                            <div class="form-grid">
+                                <label>
+                                    Card number
+                                    <input type="text" name="cardNumber" inputmode="numeric" maxlength="19" required />
+                                </label>
+                                <label>
+                                    Expiry
+                                    <input type="text" name="expiry" placeholder="MM/YY" required />
+                                </label>
+                                <label>
+                                    CVV
+                                    <input type="text" name="cvv" maxlength="4" required />
+                                </label>
+                            </div>
+                        </form>
+
+                        <aside class="checkout-summary">
+                            <h3>Order summary</h3>
+                            <div id="checkout-items" class="checkout-items"></div>
+                            <dl class="summary-list">
+                                <div class="summary-row">
+                                    <dt>Subtotal</dt>
+                                    <dd id="checkout-subtotal">$0.00</dd>
+                                </div>
+                                <div class="summary-row">
+                                    <dt>Tax</dt>
+                                    <dd id="checkout-tax">$0.00</dd>
+                                </div>
+                                <div class="summary-row">
+                                    <dt>Shipping</dt>
+                                    <dd id="checkout-shipping">$0.00</dd>
+                                </div>
+                                <div class="summary-row summary-total">
+                                    <dt>Total</dt>
+                                    <dd id="checkout-total">$0.00</dd>
+                                </div>
+                            </dl>
+
+                            <!-- New actions inside the summary card -->
+                            <div class="summary-actions">
+                                <button id="btn-place-order" class="btn primary full-width" type="button">
+                                    Place order
+                                </button>
+                                <button class="btn ghost full-width" type="button" data-nav="cart">
+                                    Back to cart
+                                </button>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONFIRMATION -->
+            <section id="view-confirmation" class="view-section">
+                <div class="page-width confirmation">
+                    <h1>Thank you.</h1>
+                    <p>Your order <strong id="order-id">#</strong> has been placed.</p>
+                    <p>This is a front-end demo — no real payments are processed.</p>
+                    <button class="btn primary" data-nav="shop">Back to shop</button>
+                </div>
+            </section>
+
+            <!-- ACCOUNT -->
+            <section id="view-account" class="view-section">
+                <div class="page-width account-layout">
+                    <section id="auth-panel" class="card"></section>
+                    <section id="profile-panel" class="card"></section>
+                </div>
+            </section>
+
+            <!-- ORDERS -->
+            <section id="view-orders" class="view-section">
+                <div class="page-width">
+                    <header class="page-header">
+                        <div>
+                            <h1>Orders</h1>
+                            <p>View simulated orders placed from this browser.</p>
+                        </div>
+                    </header>
+
+                    <p id="orders-empty" class="empty-state">
+                        You have no orders yet.
+                    </p>
+                    <div id="orders-list" class="orders-list"></div>
+                </div>
+            </section>
+
+            <!-- ABOUT -->
+            <section id="view-about" class="view-section">
+                <div class="page-width about-shell">
+                    <section class="about-card">
+                        <header class="about-header">
+                            <h1>About Visionary</h1>
+                            <p>
+                                Visionary is a modern eyewear concept store built entirely in the
+                                browser. It’s a demo storefront that shows how a fast, minimal
+                                e-commerce experience can look and feel.
+                            </p>
+                        </header>
+
+                        <div class="about-grid">
+                            <div class="about-block">
+                                <h3>What this site is</h3>
+                                <p>
+                                    A polished front-end prototype built with pure HTML, CSS, and
+                                    vanilla JavaScript. There’s no real payment processing or
+                                    backend — all data lives in your browser’s storage so you can
+                                    safely explore flows like wishlist, cart, checkout, and order
+                                    history.
+                                </p>
+                            </div>
+
+                            <div class="about-block">
+                                <h3>How you could use it</h3>
+                                <p>
+                                    Swap in your own products, plug into a real API, and you have
+                                    a ready-to-go starting point for a real eyewear storefront —
+                                    or any other product line that needs a clean, story-driven
+                                    UI.
+                                </p>
+                            </div>
+                        </div>
+
+                        <section class="faq">
+                            <h2>Frequently asked questions</h2>
+
+                            <details open>
+                                <summary>Do you offer prescription and blue-light lenses?</summary>
+                                <p>
+                                    In a real store you could offer both. In this demo, products are
+                                    sample data only, but the UI is designed so you can label frames
+                                    for blue-light use, prescription, or kids.
+                                </p>
+                            </details>
+
+                            <details>
+                                <summary>How long does shipping usually take?</summary>
+                                <p>
+                                    The checkout shows “Standard” and “Express” options as an
+                                    example. In production, you could connect those to real
+                                    shipping rates and carriers.
+                                </p>
+                            </details>
+
+                            <details>
+                                <summary>What is your return or exchange policy?</summary>
+                                <p>
+                                    This site doesn’t process real orders, but the copy and layout
+                                    are ready for your own return policy — for example, “30-day
+                                    hassle-free returns on all frames.”
+                                </p>
+                            </details>
+
+                            <details>
+                                <summary>Do you ship internationally?</summary>
+                                <p>
+                                    You can adapt the checkout form to support multiple countries,
+                                    currencies, and localized tax logic once you connect a backend.
+                                </p>
+                            </details>
+
+                            <details>
+                                <summary>Are my payment details stored anywhere?</summary>
+                                <p>
+                                    No. This is a purely front-end demo. Card fields are
+                                    simulation-only and are never sent or stored anywhere.
+                                </p>
+                            </details>
+                        </section>
+                    </section>
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section id="view-contact" class="view-section">
+                <div class="page-width contact-shell">
+                    <div class="contact-intro">
+                        <h1>Contact</h1>
+                        <p>
+                            Questions, feedback, or wholesale inquiries? Reach out — this form
+                            is a demo, but the experience is real.
+                        </p>
+                    </div>
+
+                    <section class="contact-card">
+                        <form id="contact-form" class="contact-form">
+                            <label>
+                                Name
+                                <input type="text" name="name" required />
+                            </label>
+                            <label>
+                                Email
+                                <input type="email" name="email" required />
+                            </label>
+                            <label>
+                                Message
+                                <textarea name="message" rows="5" required></textarea>
+                            </label>
+                            <button class="btn primary" type="submit">Send message</button>
+                        </form>
+                    </section>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="page-width footer-inner">
+                <span>© <span id="year"></span> Visionary Eyewear. All rights reserved.</span>
+                <span>Built as a front-end demo. No real payments are processed.</span>
+            </div>
+        </footer>
+
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
